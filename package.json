@@ -1,0 +1,24 @@
+{
+  "name": "usc-directory-verify",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danheller/usc-directory-verify.git"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "path": "^0.12.7",
+    "puppeteer": "^18.0.5"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}
