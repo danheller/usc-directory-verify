@@ -52,13 +52,16 @@ const httpServer = http.createServer((request, response) => {
 
 		try {
 			await page.goto('https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid='+keyword);
+			await page.waitForTimeout(1000);
 			let pageHasError = await page.$eval(".results .error" );
 //			console.log( 'Page count: ' + pageCount );
 
 			if( showData ) {
-				response.end( 'error' );
-				console.log( 'Done. PVID ' + keyword + ' does not exist.' );				
-				browser.close();
+				if( pageHasError ) {
+					response.end( 'error' );
+					console.log( 'Missing: ', keyword );				
+					browser.close();
+				}
 			} else {
 				response.end( 'Server running' );
 				browser.close();
