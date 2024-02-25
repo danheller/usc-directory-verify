@@ -14,16 +14,8 @@ const httpServer = http.createServer((request, response) => {
 	const path = request.url;
 	console.log("Request URL: ", path)
 	let pvid       = path.replace('/','');
-	let req        = false;
-	let start      = '1';
-	let countPages = false;
-	let pageCount  = 0;
 
-//	console.log ( splitpath );
 //  https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid=scrj7mg5
-	if( 'undefined' !== typeof pvid ) {
-		keyword = String( pvid );
-	}
 
 	response.writeHead(200, {'Content-Type': 'text/json'});			
 
@@ -47,14 +39,16 @@ const httpServer = http.createServer((request, response) => {
 		try {
 			await page.goto('https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid='+pvid);
 
-			const foundElement = await page.waitForSelector('.results .error, .results .single, .results .result');
-			const responseMsg = await page.evaluate(el => el.innerText, foundElement);
-			if(responseMsg && responseMsg.indexOf('Sorry, we could') != -1 ){ // Your code here 
-				response.end( pvid + ' was not found.' );
-				browser.close();
-			} else if( responseMsg ) {
-				response.end( 'This person was found.' );
-				browser.close();			
+			if( pvid ) {
+				const foundElement = await page.waitForSelector('.results .error, .results .single, .results .result');
+				const responseMsg = await page.evaluate(el => el.innerText, foundElement);
+				if(responseMsg && responseMsg.indexOf('Sorry, we could') != -1 ){ // Your code here 
+					response.end( pvid + ' was not found.' );
+					browser.close();
+				} else {
+					response.end( 'This person was found.' );
+					browser.close();
+				}
 			} else {
 				response.end( 'Server running' );
 				browser.close();
