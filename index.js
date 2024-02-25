@@ -24,8 +24,8 @@ const httpServer = http.createServer((request, response) => {
 
 //	console.log ( splitpath );
 //  https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid=scrj7mg5
-	if( splitpath[1] ) {
-		keyword = splitpath[1];
+	if( 'undefined' !== typeof splitpath[1] ) {
+		keyword = String( splitpath[1] );
 	}
 
 	response.writeHead(200, {'Content-Type': 'text/json'});			
