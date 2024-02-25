@@ -13,7 +13,7 @@ const httpServer = http.createServer((request, response) => {
 	// by using request.path
 	const path = request.url;
 	console.log("Request URL: ", path)
-	let splitpath = path.split('/');
+	let pvid = path.replace('/','');
 
 	let keyword    = 'advancement';
 	let req        = false;
@@ -24,8 +24,8 @@ const httpServer = http.createServer((request, response) => {
 
 //	console.log ( splitpath );
 //  https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid=scrj7mg5
-	if( 'undefined' !== typeof splitpath[1] ) {
-		keyword = String( splitpath[1] );
+	if( 'undefined' !== typeof pvid ) {
+		keyword = String( pvid );
 	}
 
 	response.writeHead(200, {'Content-Type': 'text/json'});			
