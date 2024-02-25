@@ -43,10 +43,10 @@ const httpServer = http.createServer((request, response) => {
 				const foundElement = await page.waitForSelector('.results .error, .results .single, .results .result');
 				const responseMsg = await page.evaluate(el => el.innerText, foundElement);
 				if(responseMsg && responseMsg.indexOf('Sorry, we could') != -1 ){ // Your code here 
-					response.end( pvid + ' was not found.' );
+					response.end( '0' );
 					browser.close();
 				} else {
-					response.end( 'This person was found.' );
+					response.end( '1' );
 					browser.close();
 				}
 			} else {
