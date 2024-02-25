@@ -49,17 +49,19 @@ const httpServer = http.createServer((request, response) => {
 
 		try {
 			await page.goto('https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid='+keyword);
-			await page.waitForTimeout(1000);
-			let pageHasError = await page.waitForSelector('.results .error');
-//			console.log( 'Page count: ' + pageCount );
+			await page.waitForFunction(() => 
+				let result = document.querySelectorAll('.results .error, .results .single');
+			);
 
-			if( showData ) {
-				if( pageHasError ) {
+			if( showData && result ) {
+				let firstresult = result[0];
+				if( firstresult.classList.contains(".error") ) {
 					response.end( 'error' );
 					console.log( 'Missing: ', keyword );				
 					browser.close();
 				} else {
-					response.end( 'no error!' );
+					response.end( 'no error.' );
+					console.log( firstresult );
 					browser.close();
 				}
 			} else {
