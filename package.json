@@ -16,9 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "path": "^0.12.7",
-    "puppeteer": "^22.2.0"
+    "puppeteer": "^18.0.5"
   },
   "engines": {
-    "node": ">=20.11.1"
+    "node": ">=18.18.0"
   }
 }
