@@ -50,7 +50,7 @@ const httpServer = http.createServer((request, response) => {
 		try {
 			await page.goto('https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid='+keyword);
 			await page.waitForTimeout(1000);
-			let pageHasError = await page.$eval(".results .error" );
+			let pageHasError = await page.waitForSelector('.results .error');
 //			console.log( 'Page count: ' + pageCount );
 
 			if( showData ) {
