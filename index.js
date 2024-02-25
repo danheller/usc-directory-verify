@@ -25,10 +25,7 @@ const httpServer = http.createServer((request, response) => {
 //	console.log ( splitpath );
 //  https://uscdirectory.usc.edu/web/directory/faculty-staff/#pvid=scrj7mg5
 	if( splitpath[1] ) {
-		if( 'pvid' == splitpath[1] ) {
-			showData = true;
-			keyword = splitpath[2];
-		}
+		keyword = splitpath[1];
 	}
 
 	response.writeHead(200, {'Content-Type': 'text/json'});			
@@ -62,8 +59,7 @@ const httpServer = http.createServer((request, response) => {
 					console.log( 'Missing: ', keyword );				
 					browser.close();
 				} else {
-					response.end( 'no error' );
-					console.log( splitpath[0] + ', ' + splitpath[1] + ', ' +splitpath[2] );
+					response.end( 'no error!' );
 					browser.close();
 				}
 			} else {
