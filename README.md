@@ -1,3 +1,3 @@
-# usc-alumni-events
+# usc-directory-verify
 
-scraper for fightonline event json data
+Checks whether people are present in the [University of Southern California Directory](uscdirectory.usc.edu)
